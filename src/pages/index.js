@@ -11,7 +11,7 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col  main_background ${tajawal.className}`}
     >
-<Link href="/form">About helle world</Link> 
+<Link href="/form">Form Page</Link> 
 
       <Navbar />
       <section className='md:px-20 px-2 flex md:flex-row gap-2 flex-col items-start mt-5'>
