@@ -17,6 +17,12 @@ export function useDocument() {
             [name]: { label: e.label, value: e.value, title: title },
         }))
     }
+    const handleChangeInput = (value, name, title)=> {
+        setDocument(prevState => ({
+            ...prevState,
+            [name]: {label:'other' , value:0 , text : value, title: title },
+        }))
+    }
     const handleDocument = (document_copy) => {
         setDocument((prevState) => ({ ...prevState, ...document_copy }))
     }
@@ -60,5 +66,5 @@ export function useDocument() {
             setShowTable(true)
         }
     }
-    return { document, handleChangeDropDown, handleDocument, filterDocument, showTable, error };
+    return { document, handleChangeDropDown , handleChangeInput, handleDocument, filterDocument, showTable, error };
 }

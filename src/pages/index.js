@@ -1,126 +1,97 @@
 import Image from 'next/image'
 import { Tajawal } from 'next/font/google';
-import ImageGallery from "react-image-gallery";
+import CustomImageGallery from '@/common/CustomImageGallery/CustomImageGallery';
 import Navbar from '@/common/Navbar/Navbar';
 
-// import Link from 'next/link'
-{/* <Link href="/form">About helle world</Link> */ }
+import Link from 'next/link'
 const tajawal = Tajawal({ subsets: ['arabic'], weight: ["200", "300", "400", "500", "700", "800", "900"] });
-const images = [
-  {
-    original: "https://picsum.photos/id/1018/1000/600/",
-    thumbnail: "https://picsum.photos/id/1018/250/150/",
-  },
-  {
-    original: "https://picsum.photos/id/1015/1000/600/",
-    thumbnail: "https://picsum.photos/id/1015/250/150/",
-  },
-  {
-    original: "https://picsum.photos/id/1019/1000/600/",
-    thumbnail: "https://picsum.photos/id/1019/250/150/",
-  },
-];
-const renderItem = (item) => {
-  return (
-    <div className="image-gallery-image" style={{position:'relative'}}>
-      <img src={item.original} alt="" />
-      <div className="icon-row">
-          <ul role='list' className='flex items-center gap-2'>
-              <li className=' w-12 h-12 bg-primary flex items-center justify-center rounded-full'>
-                <Image src={'/noun_show_3052148.png'} width={15} height={15} alt='heart' />
-              </li>
-              <li className=' w-12 h-12 bg-primary flex items-center justify-center rounded-full'>
-                <Image src={'/noun_show_3052148.png'} width={15} height={15} alt='heart' />
-              </li>
-              <li className=' w-12 h-12 bg-primary flex items-center justify-center rounded-full'>
-                <Image src={'/noun_show_3052148.png'} width={15} height={15} alt='heart' />
-              </li>
-          </ul>
-          <div>
-          hello
-          </div>
-      </div>
-    </div>
-  );
-};
+
 export default function Home() {
   return (
     <main
       className={`flex min-h-screen flex-col  main_background ${tajawal.className}`}
     >
-      <>
+<Link href="/form">About helle world</Link> 
 
-        <header className='md:px-20 px-2 '>
-          <nav className="flex  py-2 items-center justify-end ">
-            <div className="md:flex hidden items-center md:justify-end justify-start  w-10/12 gap-1">
-              <div className='md:w-2/12 '>
-                <div className="relative" data-te-dropdown-ref>
-                  <a className="flex items-center whitespace-nowrap rounded bg-accent px-6 py-2 text-xs  text-primary  " href="#" type="button" id="dropdownMenuButton2" data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
-                    مزاد مباشر متعدد
-                    <span className="ml-3 w-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
-                        <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center   md:w-10/12 h-9 ">
-                <input dir='rtl' className=" bg-accent outline-none h-full p-2 w-full hidden md:block "
-                  type="text" name="search" id="search" placeholder="ابحث هنا" />
-                <div className='py-2 px-4 bg-primary  h-full rounded'>
-                  <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} className="h-5 w-5 text-white " fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div className='flex md:hidden justify-start w-10/12'>
-              <svg viewBox="0 0 100 80" width={30} height={30} fill='#D20653'>
-                <rect width={100} height={20} rx={10} />
-                <rect y={30} width={100} height={20} rx={10} />
-                <rect y={60} width={100} height={20} rx={10} />
-              </svg>
-            </div>
-            <div className='w-4/12 flex justify-end'>
-              <Image
-                src="/Layer 2.png"
-                width={109}
-                height={34}
-                alt="Picture of the logo"
-              />
-            </div>
-          </nav>
-        </header>
-        <header className='md:px-20 px-2 md:block hidden nav-height primary_header' >
-          <nav className="flex h-full  py-6 items-center justify-between">
-            <ul role="list" className=" items-center text-xs  flex text-right  text-white nav_gap">
-              <li><a href="#">الرئيسية</a></li>
-              <li><a href="#"></a>التصنيفات</li>
-              <li><a href="#"></a>مشترياتى</li>
-              <li><a href="#"></a>حسابى</li>
-            </ul>
-            <div className="relative flex nav_gap items-center" >
-              <Image src={'/price_change_black_24dp.png'} alt='price_change_black' width={24} height={24} />
-              <Image src={'/notifications_black_24dp.png'} alt='notifications_black' width={24} height={24} />
-              <Image src={'/favorite_black_24dp.png'} alt='favorite_black_24dp' width={24} height={24} />
-              <a className="flex items-center whitespace-nowrap  bg-secondary px-4 rounded-full py-2 text-xs  text-white  " href="#" type="button" id="dropdownMenuButton2" data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init data-te-ripple-color="light">
-                عربية
-                <span className="ml-3 w-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
-                    <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                  </svg>
-                </span>
-              </a>
-            </div>
-          </nav>
-        </header>
-      </>
+      <Navbar />
       <section className='md:px-20 px-2 flex md:flex-row gap-2 flex-col items-start mt-5'>
-        <div className='flex flex-col border gap-5 md:w-10/12 w-full '>
-          <ImageGallery items={images} renderItem={renderItem} thumbnailPosition = {'left'} showNav={false} isRTL={true} showPlayButton={false} showBullets={false} showFullscreenButton={false} />;
+        <div className='flex flex-col   md:w-10/12 w-full '>
+          <CustomImageGallery />
+          <div className='flex md:gap-7 gap-0 w-full'>
+            <div className='md:w-1/12' />
+            <div className='md:w-11/12 w-full'>
+              <div className='content_data w-full flex flex-col gap-1'>
+                <div className='flex items-start gap-2'>
+                  <Image width={44} className='inline-block rounded-full  ring-2 ring-white' height={44} src={'/Max-R_Headshot (1).jpg'} alt='user' />
+                  <div className='flex gap-1 pt-1 flex-col items-start'>
+                    <h2 className='text-natural text-base'>اسم البائع</h2>
+                    <span className='text-natural text-xs'>+966598398</span>
+                  </div>
+                  <div className="flex pt-2 items-center space-x-1">
+                    <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                    </svg>
+                    <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                    </svg>
+                    <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                    </svg>
+                    <svg className="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                    </svg>
+                    <svg className="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                      <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h1 className='text-info text-xl font-semibold'>شراء مجموعة من السيارات من موديلات1990</h1>
+                </div>
+                {/* <div>
+                  <span>code 1234</span>
+                </div> */}
+                <div className='flex md:flex-row flex-col md:justify-between md:items-center md:gap-0 gap-2'>
+                  <div className=' flex  items-center gap-1'>
+                    <span className='number_data'>
+                      10000+
+                      <span />
+                    </span>
+                    <span className='number_data'>
+                      10010+
+                      <span />
+                    </span>
+                    <span className='number_data'>
+                      10020+
+                      <span />
+                    </span>
+                  </div>
+                  <div className='flex items-center gap-2 search_term'>
+                    <input dir='rtl' className=" border outline-none h-full p-2 w-full  "
+                      type="text" name="search" id="search" placeholder="ابحث هنا" />
+                    <button>تأكيد</button>
+                  </div>
+                </div>
+              </div>
+              <div className='content_data mt-7 flex flex-col w-full gap-2'>
+                <div>
+                  <h1 className='text-info text-xl font-semibold'>ارسال رسالة الى البائع</h1>
+                </div>
+                <div>
+                  <p className='text-info text-sm'>يمكنك في وقت البث المباشر ارسال رسالة الى البائع للاستفسار</p>
+                </div>
+                <div className='flex gap-2 items-center'>
+                  <input dir='rtl' className="bg-input rounded-full border outline-none h-full p-2 w-full "
+                    type="text" name="search" id="search" placeholder="ابحث هنا" />
+                  <button style={{ cursor: 'pointer' }} >
+                    <Image src={'/Group 5452.png'} alt='group' width={44} height={44} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className='md:w-4/12 w-full gap-5 flex-col  justify-end flex'>
+        <div className='md:w-4/12 w-full gap-6 flex-col  justify-end flex'>
           <div className='custom_Card gap-1.5 items-center pt-3 pb-4 px-3'>
             <div className='  flex items-center bg-info  p-2.5 text-white rounded w-full justify-between'>
               <span className='text-xs'>تاريخ البث </span>
@@ -139,7 +110,7 @@ export default function Home() {
           </div>
           <div className='custom_Card gap-2 it pt-3 pb-4 px-5'>
             <h3 className='text-xl font-semibold'>المتنافسون</h3>
-            <div className='flex flex-col justify-between items-center gap-2'>
+            <div className='flex flex-col justify-between items-center gap-3'>
               <div className='flex items-center justify-between gap-1  w-full '>
                 <div className='d-flex items-center gap-2'>
                   <Image width={44} className='inline-block rounded-full  ring-2 ring-white' height={44} src={'/Max-R_Headshot (1).jpg'} alt='user' />
@@ -200,21 +171,25 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className='custom_Card gap-1.5 items-center pt-3 pb-4 px-3'>
+          <div className='custom_Card gap-3 items-center pt-3 pb-4 px-3'>
             <div className='bg-realValue w-full p-2 text-semiDark rounded flex justify-between items-center'>
               <span className='text-xs'>القيمة الابتدائية</span>
               <span className='text-2xl'>50000</span>
             </div>
             <div className='bg-realValue w-full p-2 text-semiDark rounded flex justify-between items-center'>
-              <span className='text-xs'>القيمة الابتدائية</span>
+              <span className='text-xs'>القيمة التقريبية</span>
               <span className='text-2xl'>50000</span>
             </div>
             <div className='bg-realValue w-full p-2 text-semiDark rounded flex justify-between items-center'>
-              <span className='text-xs'>القيمة الابتدائية</span>
+              <span className='text-xs'>العربون</span>
               <span className='text-2xl'>50000</span>
             </div>
             <div className='bg-realValue w-full p-2 text-semiDark rounded flex justify-between items-center'>
-              <span className='text-xs'>القيمة الابتدائية</span>
+              <span className='text-xs'>سعر الشراء الفورى</span>
+              <span className='text-2xl'>50000</span>
+            </div>
+            <div className='bg-realValue w-full p-2 text-semiDark rounded flex justify-between items-center'>
+              <span className='text-xs'>قيمة ذيادة المزاد</span>
               <span className='text-2xl'>50000</span>
             </div>
           </div>

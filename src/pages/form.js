@@ -2,22 +2,31 @@ import Dropdown from '@/common/Dropdown/Dropdown';
 import { useDocument } from '@/common/Form/Hooks/UseDocument';
 import { UseProperty } from '@/common/Form/Hooks/UseProperty';
 import { renderProperties } from '@/common/Form/RenderProperties';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 const Form = ({ categories }) => {
     let [subCategories, setSubCategories] = useState([]);
-    const { document, handleChangeDropDown, handleDocument, filterDocument, showTable, error } = useDocument();
+    const [copDocState, setCopyDoc] = useState(false);
+    const { document, handleChangeDropDown, handleChangeInput, handleDocument, filterDocument, showTable, error } = useDocument();
     const { processTypes, handleSetProcessTypes, handleChangePropertyDropdown } = UseProperty(handleDocument)
     const handleSetSubCategory = (data) => {
         setSubCategories(data)
     }
+    const copy_doc = useMemo(()=>{
+        return document
+    }, [showTable, copDocState])
+    
     return (
         <div className="form_container  pt-8   ">
-            <form className="border-l border-ccc pl-2 flex flex-col gap-2" noValidate onSubmit={(e) => filterDocument(e, processTypes)} >
+            <form className="border-l border-ccc pl-2 flex flex-col gap-2" noValidate onSubmit={(e) => {
+                filterDocument(e, processTypes)
+                setCopyDoc(!copDocState)
+            }
+            } >
                 <Dropdown
                     options={categories}
                     label={'Main Category'}
                     name={'main_category'}
-                    error = {error.main_category}
+                    error={error.main_category}
                     isRequired={true}
                     value={document.main_category}
                     placeholder={'please select category'}
@@ -30,7 +39,7 @@ const Form = ({ categories }) => {
                     options={subCategories}
                     label={'Secondary Category'}
                     name={'secondary_category'}
-                    error = {error.secondary_category}
+                    error={error.secondary_category}
                     isRequired={true}
                     value={document.secondary_category}
                     placeholder={'please select secondary category'}
@@ -42,7 +51,7 @@ const Form = ({ categories }) => {
                 {
                     document.secondary_category ? <>
                         <div className='mt-3 flex flex-col gap-2'>
-                            {renderProperties(processTypes, handleChangeDropDown, handleChangePropertyDropdown, document)}
+                            {renderProperties(processTypes, handleChangeDropDown, handleChangeInput, handleChangePropertyDropdown, document)}
                         </div>
                     </> : null
                 }
@@ -59,11 +68,11 @@ const Form = ({ categories }) => {
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     {
-                                        Object.keys(document).map(key => {
-                                            let col = document[key]
+                                        Object.keys(copy_doc).map((key, index) => {
+                                            let col = copy_doc[key]
                                             if (col !== null) {
                                                 return (
-                                                    <th key={`col_${col.value}`} scope="col" className="px-6 py-3">
+                                                    <th key={`col_${index}`} scope="col" className="px-6 py-3">
                                                         {col.title}
                                                     </th>
                                                 )
@@ -77,12 +86,12 @@ const Form = ({ categories }) => {
                             <tbody>
                                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     {
-                                        Object.keys(document).map(key => {
-                                            let row = document[key]
+                                        Object.keys(copy_doc).map((key, index) => {
+                                            let row = copy_doc[key]
                                             if (row !== null) {
                                                 return (
-                                                    <td key={`row${row.value}`} className="px-6 py-4">
-                                                        {row.label}
+                                                    <td key={`row${index}`} className="px-6 py-4">
+                                                        {row.label === 'other' ? row.text ? row.text : 'other' : row.label}
                                                     </td>
                                                 )
                                             } else {
